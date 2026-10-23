@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f7fb">
+    <title>Cedarhaven | Municipal Knowledge Assistant</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Markdown rendering and HTML sanitization -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/dompurify@3.2.6/dist/purify.min.js"></script>
+
+    <script src="{{ url_for('static', filename='js/chat.js') }}" defer></script>
+</head>
+
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">C</div>
+                <div>
+                    <h2>Cedarhaven</h2>
+                    <p>Municipal Services</p>
+                </div>
+            </div>
+
+            <div class="sidebar-label">YOUR ASSISTANT</div>
+
+            <div class="sidebar-feature">
+                <span class="feature-icon">✦</span>
+                <div>
+                    <strong>Knowledge Assistant</strong>
+                    <p>Municipal information, simplified.</p>
+                </div>
+            </div>
+
+            <div class="sidebar-note">
+                <span>ⓘ</span>
+                <p>Answers are based on the provided municipal documents. Check the sources for details.</p>
+            </div>
+
+            <div class="sidebar-footer">
+                <span class="status-dot"></span>
+                Ready to assist
+            </div>
+        </aside>
+
+        <main class="main-panel">
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">CEDARHAVEN • DIGITAL SERVICES</p>
+                    <h1>Municipal Knowledge Assistant</h1>
+                    <p class="subtitle">Ask questions about services, bylaws, permits and licensing.</p>
+                </div>
+                <div class="online-pill">
+                    <span class="status-dot"></span>
+                    Assistant online
+                </div>
+            </header>
+
+            <section class="chat-area" aria-label="Chat conversation">
+                <div class="welcome" id="welcome">
+                    <div class="welcome-icon">✦</div>
+                    <p class="eyebrow">HOW CAN WE HELP?</p>
+                    <h2>Good day! What would you like to know?</h2>
+                    <p class="welcome-copy">
+                        Ask a municipal question below, or choose one of these examples to get started.
+                    </p>
+
+                    <div class="suggestion-grid">
+                        <button class="suggestion-chip" type="button"
+                            data-question="What services and responsibilities does the Cedarhaven municipality provide to residents?">
+                            <span>🏛️</span>
+                            <span><strong>Municipal services</strong><small>What services are available?</small></span>
+                            <span class="chip-arrow">↗</span>
+                        </button>
+
+                        <button class="suggestion-chip" type="button"
+                            data-question="How can a resident submit a municipal service request, and what information should they include?">
+                            <span>📝</span>
+                            <span><strong>Service requests</strong><small>How do I submit a request?</small></span>
+                            <span class="chip-arrow">↗</span>
+                        </button>
+
+                        <button class="suggestion-chip" type="button"
+                            data-question="How can a resident report a property-related bylaw violation, and what happens afterward?">
+                            <span>🏘️</span>
+                            <span><strong>Bylaw concerns</strong><small>How do I report a violation?</small></span>
+                            <span class="chip-arrow">↗</span>
+                        </button>
+
+                        <button class="suggestion-chip" type="button"
+                            data-question="What permits and licences are covered in the Cedarhaven municipal documents?">
+                            <span>📄</span>
+                            <span><strong>Permits & licensing</strong><small>Find permit information</small></span>
+                            <span class="chip-arrow">↗</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="messages" class="messages" aria-live="polite"></div>
+
+                <div id="loading" class="loading-row" hidden>
+                    <div class="typing-indicator"><span></span><span></span><span></span></div>
+                    <span>Searching municipal documents...</span>
+                </div>
+            </section>
+
+            <footer class="composer-wrap">
+                <form id="chat-form" class="composer">
+                    <label class="sr-only" for="question-input">Your question</label>
+                    <textarea id="question-input" name="question" rows="1"
+                        placeholder="Ask a question about Cedarhaven..."
+                        maxlength="1500" required></textarea>
+                    <button id="send-button" type="submit" aria-label="Send message">
+                        <span>Send</span>
+                        <span aria-hidden="true">↑</span>
+                    </button>
+                </form>
+                <p class="composer-hint">AI-generated responses can be imperfect. Review the linked source documents.</p>
+                <p id="error-message" class="error-message" role="alert" hidden></p>
+            </footer>
+        </main>
+    </div>
+</body>
+</html>
